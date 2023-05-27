@@ -4,12 +4,12 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 
 const chains = [arbitrum, mainnet, polygon]
-const projectId = 'YOUR_PROJECT_ID'
+const projectId = '7ffae9cc3bdc1f84297b73068118bd83'
 
-const { publicClient } = configureChains(chains, [w3mProvider({ 7ffae9cc3bdc1f84297b73068118bd83 })])
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ 7ffae9cc3bdc1f84297b73068118bd83, version: 1, chains }),
+  connectors: w3mConnectors({ projectId, version: 1, chains }),
   publicClient
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
@@ -21,7 +21,7 @@ function App() {
         <HomePage />
       </WagmiConfig>
 
-      <Web3Modal projectId={7ffae9cc3bdc1f84297b73068118bd83} ethereumClient={ethereumClient} />
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   )
 }
