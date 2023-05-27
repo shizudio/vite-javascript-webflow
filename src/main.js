@@ -1,8 +1,27 @@
-import animateTitle from './features/animateTitle'
-import createBadge from './features/createBasge'
-import './styles/style.css'
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { Web3Modal } from '@web3modal/react'
+import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 
-console.log('Welcome to Vite + JS + Webflow!')
+const chains = [arbitrum, mainnet, polygon]
+const projectId = 'YOUR_PROJECT_ID'
 
-createBadge()
-animateTitle()
+const { publicClient } = configureChains(chains, [w3mProvider({ 7ffae9cc3bdc1f84297b73068118bd83 })])
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors: w3mConnectors({ 7ffae9cc3bdc1f84297b73068118bd83, version: 1, chains }),
+  publicClient
+})
+const ethereumClient = new EthereumClient(wagmiConfig, chains)
+
+function App() {
+  return (
+    <>
+      <WagmiConfig config={wagmiConfig}>
+        <HomePage />
+      </WagmiConfig>
+
+      <Web3Modal projectId={7ffae9cc3bdc1f84297b73068118bd83} ethereumClient={ethereumClient} />
+    </>
+  )
+}
