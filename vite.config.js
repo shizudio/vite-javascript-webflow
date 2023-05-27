@@ -26,7 +26,7 @@ export default defineConfig({
           jquery: '$',
         },
       },
-      external: ['jquery', '@wagmi/core'],
+      external: ['jquery', '@wagmi'],
     },
   },
 })
