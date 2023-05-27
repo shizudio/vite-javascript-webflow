@@ -26,7 +26,13 @@ export default defineConfig({
           jquery: '$',
         },
       },
-      external: ['jquery', '@wagmi'],
+      external: [
+        'jquery',
+        '@wagmi/core',
+        '@wagmi/core/chains',
+        '@web3modal/ethereum',
+        '@web3modal/html',
+      ],
     },
   },
 })
