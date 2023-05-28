@@ -44,7 +44,7 @@ yarn dev
 To create a production build:
 
 ```sh
-yarn build
+
 ```
 
 To clean the local `/dist` folder:
